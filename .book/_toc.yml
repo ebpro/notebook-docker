@@ -1,0 +1,12 @@
+format: jb-book
+root: README.md
+options:  # The options key will be applied to all chapters, but not sub-sections
+    numbered: True
+chapters: 
+  #- glob: "*.ipynb"
+  - file: 00-docker-intro.ipynb
+  - file: 01-docker-base.ipynb
+  - file: 02-docker-image.ipynb
+  - file: 03-docker-java.ipynb
+  - file: 04-docker-orchestration.ipynb
+

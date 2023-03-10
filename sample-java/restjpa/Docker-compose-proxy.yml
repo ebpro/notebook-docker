@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  app:
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.app.rule=PathPrefix(`/restjpa{regex:$$|/.*}`)
+      - traefik.http.services.app.loadbalancer.server.port=8080
+    image: 'restjpa:latest'
+    build:
+      context: .
+    depends_on:
+      - db
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://db:5432/demo-db
+      - DATASOURCE_USERNAME=dba
+      - DATASOURCE_PASSWORD=secret
+    ports:
+      - "8088:8080"
+    networks:
+      - frontend
+      - backend
+
+  db:
+    image: 'postgres:15.2-alpine'
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dba
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=demo-db
+    volumes:
+      - restjpa-pg-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  traefik:
+    image: 'traefik:v2.9.8'
+    restart: 'unless-stopped'
+    depends_on:
+      - db
+      - app
+    ports:
+      - '10080:80'
+      - '18080:8080'
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - './traefik/traefik.toml:/traefik.toml'
+    networks:
+      - frontend
+
+volumes:
+  restjpa-pg-data:
+
+networks:
+  frontend:
+    external: true
+    name: restjpa_frontend
+  backend:
