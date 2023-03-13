@@ -16,4 +16,10 @@ jobs:
       - name: Building books
         run: ./makeBooks.sh
         shell: bash
+      - name: Archive book
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-without-markdown
+          path: |
+            .book/_build/singlehtml/README.html            
 

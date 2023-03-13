@@ -1,4 +1,4 @@
-BUILDERS="${JUPYTERBOOK_BUILDERS:-singlehtml}"
+BUILDERS="${JUPYTERBOOK_BUILDERS:-pdflatex singlehtml html}"
 
 if docker network ls|grep -q network-book-${PWD##*/}; then
   echo "docker network network-book-${PWD##*/} already exists"
@@ -46,6 +46,6 @@ cmd="docker run --rm --workdir=\"/home/jovyan/booksrc\"\
 
 eval $cmd
 
-docker container rm docker-book-${PWD##*/}
+docker container docker-book-${PWD##*/}
 docker volume rm docker-book-${PWD##*/}-certs-ca docker-book-${PWD##*/}-certs-client 
 docker network rm network-book-${PWD##*/}
