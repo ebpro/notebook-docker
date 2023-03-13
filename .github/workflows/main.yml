@@ -1,0 +1,19 @@
+name: 'Make and publish books'
+
+on:  push
+
+jobs:
+  makebooks:
+    # The tags on the runner
+    runs-on: [self-hosted, Linux]
+
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - uses: actions/checkout@v2
+      - name: Building books
+        run: ./makeBooks.sh
+        shell: bash
+

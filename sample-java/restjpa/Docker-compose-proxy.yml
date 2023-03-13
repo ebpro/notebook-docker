@@ -10,7 +10,8 @@ services:
     build:
       context: .
     depends_on:
-      - db
+      - db:
+          condition: service_healthy
     environment:
       - DATASOURCE_URL=jdbc:postgresql://db:5432/demo-db
       - DATASOURCE_USERNAME=dba
@@ -33,6 +34,11 @@ services:
       - restjpa-pg-data:/var/lib/postgresql/data
     networks:
       - backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   traefik:
     image: 'traefik:v2.9.8'

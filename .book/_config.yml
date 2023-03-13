@@ -46,6 +46,7 @@ latex:
   latex_engine: xelatex
   latex_documents:
     targetname: IntroductionToContainers.tex
+  latex_theme: howto
 
 launch_buttons:
   notebook_interface: jupyterlab

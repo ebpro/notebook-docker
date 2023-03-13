@@ -1,10 +1,20 @@
 version: '3.8'
 
 services:
+  db:
+    image: 'postgres:15.2-alpine'
+    environment:
+      - POSTGRES_USER=dba
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=demo-db
+    volumes:
+      - restjpa-pg-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
   app:
     image: 'restjpa:latest'
-    build:
-      context: .
+    build: .
     depends_on:
       - db
     environment:
@@ -17,22 +27,9 @@ services:
       - frontend
       - backend
 
-  db:
-    image: 'postgres:15.2-alpine'
-    environment:
-      - POSTGRES_USER=dba
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=demo-db
-    volumes:
-      - restjpa-pg-data:/var/lib/postgresql/data
-    networks:
-      - backend
-
 volumes:
   restjpa-pg-data:
 
 networks:
   frontend:
-    external: true
-    name: restjpa_frontend
   backend:

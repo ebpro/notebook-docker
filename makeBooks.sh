@@ -46,6 +46,6 @@ cmd="docker run --rm --workdir=\"/home/jovyan/booksrc\"\
 
 eval $cmd
 
+docker container docker-book-${PWD##*/}
 docker volume rm docker-book-${PWD##*/}-certs-ca docker-book-${PWD##*/}-certs-client 
 docker network rm network-book-${PWD##*/}
-
