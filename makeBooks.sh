@@ -40,6 +40,7 @@ cmd="docker run --rm --workdir=\"/home/jovyan/booksrc\"\
 					--toc /home/jovyan/booksrc/.book/_toc.yml \
 					--builder \\\$builder \
 					/home/jovyan/booksrc; \
+				chown -R $NB_UID /home/jovyan/booksrc/.book/
 			done\""
 
 #echo "Running: \($cmd\)"
