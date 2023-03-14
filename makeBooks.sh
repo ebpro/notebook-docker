@@ -15,6 +15,7 @@ else
 	-v docker-book-${PWD##*/}-certs-ca:/certs/ca \
 	-v docker-book-${PWD##*/}-certs-client:/certs/client \
 	docker:dind
+  sleep 2
 fi
 
 cmd="docker run --rm --workdir=\"/home/jovyan/booksrc\"\
