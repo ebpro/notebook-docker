@@ -23,5 +23,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.meta.outputs.tags }}
-          path: ${GITHUB_WORKSPACE}/.book/_build/singlehtml/README.html            
+          path: ./.book/_build/singlehtml/README.html            
 
