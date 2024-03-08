@@ -1,0 +1,6 @@
+|                |                       |
+| :-------------- | :--------------------- |
+| Version        | develop (0c43fd6) 2023-03-14 10:33:23   |
+| Git repository | [https://github.com/ebpro/notebook-docker](https://github.com/ebpro/notebook-docker)         |
+| Java tools     | OpenJDK Temurin-21.0.2+13 - Apache Maven 3.9.6      |
+| Docker         | Client: 25.0.3  - buildx v0.12.1 - compose v2.24.5 <br/> Server: 25.0.3  |

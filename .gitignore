@@ -6,3 +6,7 @@ target
 .mvn/wrapper/maven-wrapper.jar
 sample-java/helloworld/.mvn/wrapper/maven-wrapper.jar
 local.db
+
+/.quarto/
+.jupyter_cache
+*_files/
